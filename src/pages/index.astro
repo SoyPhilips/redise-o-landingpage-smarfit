@@ -15,8 +15,8 @@ import SedesMap from '../components/SedesMap.astro';
   <!-- 2. HEADER -->
   <header class="header bg-dark">
     <div class="container header-content">
-      <a href="#" class="logo" aria-label="Smart Fit - Inicio">
-        <img src="/smartfit-logo.svg" alt="Smart Fit" width="168" height="52" decoding="async" />
+      <a href="#" class="logo logo-header" aria-label="Smart Fit - Inicio">
+        <img src="/smartfit-logo.svg" alt="Smart Fit" width="200" height="64" decoding="async" />
       </a>
       <nav class="nav-desktop">
         <ul>
@@ -566,14 +566,14 @@ import SedesMap from '../components/SedesMap.astro';
 
   /* Header */
   .header {
-    padding: 16px 0;
+    padding: 14px 0;
   }
   .header-content {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(160px, auto) 1fr auto;
     align-items: center;
-    gap: 24px;
-    min-height: 56px;
+    gap: 20px 32px;
+    min-height: 72px;
   }
   .logo {
     display: flex;
@@ -581,20 +581,38 @@ import SedesMap from '../components/SedesMap.astro';
     flex-shrink: 0;
     text-decoration: none;
     line-height: 0;
-    height: 52px;
   }
-  .logo img {
-    height: 52px;
+  .header .logo-header {
+    justify-self: start;
+    align-self: center;
+    height: 64px;
+  }
+  .header .logo-header img {
+    height: 64px;
     width: auto;
-    max-width: 168px;
+    min-width: 180px;
+    max-width: 220px;
     display: block;
+    object-fit: contain;
+    object-position: left center;
+  }
+  .nav-desktop {
+    justify-self: center;
+  }
+  .header-content > .btn {
+    justify-self: end;
+    white-space: nowrap;
+    padding: 14px 28px;
+    font-size: 1rem;
   }
   .footer-brand .logo {
     height: 44px;
   }
   .footer-brand .logo img {
     height: 44px;
-    max-width: 140px;
+    width: auto;
+    max-width: 150px;
+    object-fit: contain;
   }
   #beneficios {
     scroll-margin-top: 100px;
@@ -1097,6 +1115,17 @@ import SedesMap from '../components/SedesMap.astro';
     .mockup { width: 200px; height: 400px; }
   }
   @media (max-width: 768px) {
+    .header-content {
+      grid-template-columns: 1fr auto;
+      min-height: 64px;
+    }
+    .header .logo-header {
+      height: 56px;
+    }
+    .header .logo-header img {
+      height: 56px;
+      min-width: 150px;
+    }
     .nav-desktop { display: none; }
     .hero { padding: 60px 0; }
     .hero-title { font-size: 2.2rem; }
