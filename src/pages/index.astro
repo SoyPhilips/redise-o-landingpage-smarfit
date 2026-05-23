@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SedesMap from '../components/SedesMap.astro';
-import logo from '../logo.jpg';
 ---
 
 <Layout title="Smart Fit Colombia - Gimnasios de alta calidad">
@@ -17,13 +16,7 @@ import logo from '../logo.jpg';
   <header class="header bg-dark">
     <div class="container header-content">
       <a href="#" class="logo" aria-label="Smart Fit - Inicio">
-        <img
-          src={logo.src}
-          alt="Smart Fit"
-          width="140"
-          height="48"
-          decoding="async"
-        />
+        <img src="/smartfit-logo.svg" alt="Smart Fit" width="168" height="52" decoding="async" />
       </a>
       <nav class="nav-desktop">
         <ul>
@@ -499,7 +492,7 @@ import logo from '../logo.jpg';
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">
-            <img src={logo.src} alt="Smart Fit" width="120" height="40" decoding="async" />
+            <img src="/smartfit-logo.svg" alt="Smart Fit" width="140" height="44" decoding="async" />
           </div>
           <p class="mt-20 text-gray">El gimnasio inteligente.</p>
         </div>
@@ -588,22 +581,20 @@ import logo from '../logo.jpg';
     flex-shrink: 0;
     text-decoration: none;
     line-height: 0;
-    width: 140px;
-    height: 48px;
+    height: 52px;
   }
   .logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: left center;
+    height: 52px;
+    width: auto;
+    max-width: 168px;
     display: block;
   }
   .footer-brand .logo {
-    width: 120px;
-    height: 40px;
+    height: 44px;
   }
   .footer-brand .logo img {
-    object-position: left center;
+    height: 44px;
+    max-width: 140px;
   }
   #beneficios {
     scroll-margin-top: 100px;

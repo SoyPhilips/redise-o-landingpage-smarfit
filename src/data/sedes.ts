@@ -257,4 +257,13 @@ export const sedes: Sede[] = [
     lng: -75.6964,
     url: 'https://www.smartfit.com.co/sedes/pereira-centro',
   },
+  {
+    id: 'san-silvestre-barrancabermeja',
+    name: 'San Silvestre Barrancabermeja',
+    city: 'Barrancabermeja',
+    address: 'CC. San Silvestre, Cra. 19 # 58A-13',
+    lat: 7.0653,
+    lng: -73.8547,
+    url: 'https://www.smartfit.com.co/sedes/san-silvestre-barrancabermeja',
+  },
 ];
