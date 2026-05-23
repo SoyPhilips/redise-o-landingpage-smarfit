@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import SedesMap from '../components/SedesMap.astro';
 import logo from '../logo.jpg';
+import appImg from '../recursos/app.jpeg';
+import smartRumba from '../recursos/smart_rumba.jpeg';
+import smartCombat from '../recursos/smart_combat.jpeg';
+import smartFuncional from '../recursos/smart_funcional.jpeg';
+import smartCycling from '../recursos/smart_cycling.jpeg';
 ---
 
 <Layout title="Smart Fit Colombia - Gimnasios de alta calidad">
@@ -30,6 +35,8 @@ import logo from '../logo.jpg';
           <li><a href="#sedes">Sedes</a></li>
           <li><a href="#planes">Planes</a></li>
           <li><a href="#clases">Clases</a></li>
+          <li><a href="#reto">Reto 30 días</a></li>
+          <li><a href="#comunidad">Comunidad</a></li>
           <li><a href="#app">App</a></li>
           <li><a href="#beneficios">Beneficios Black</a></li>
         </ul>
@@ -111,6 +118,42 @@ import logo from '../logo.jpg';
           </div>
           <h3>Precio justo</h3>
           <p>Gimnasio de alto nivel desde $69.900/mes. Sin letra pequeña</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5b. RETO 30 DÍAS (exclusivo landing) -->
+  <section id="reto" class="section challenge bg-dark">
+    <div class="container">
+      <div class="challenge-grid">
+        <div class="challenge-content">
+          <span class="section-badge">Solo en esta promoción</span>
+          <h2 class="section-title text-white">Reto 30 días: tu transformación con guía real</h2>
+          <p class="challenge-lead">
+            No es solo inscribirte: te acompañamos con un plan semanal en la app, check-ins con profesores
+            y metas claras para que veas progreso en el primer mes.
+          </p>
+          <ul class="challenge-list">
+            <li>Rutina personalizada según tu nivel (principiante o avanzado)</li>
+            <li>Recordatorios y seguimiento de asistencia en la Smart Fit App</li>
+            <li>Comunidad de apoyo en sede los sábados</li>
+          </ul>
+          <a href="#planes" class="btn btn-primary mt-30">Unirme al reto gratis</a>
+        </div>
+        <div class="challenge-stats">
+          <div class="stat-card">
+            <strong>30</strong>
+            <span>días de plan</span>
+          </div>
+          <div class="stat-card">
+            <strong>4</strong>
+            <span>semanas guiadas</span>
+          </div>
+          <div class="stat-card">
+            <strong>0</strong>
+            <span>costo extra del reto</span>
+          </div>
         </div>
       </div>
     </div>
@@ -257,31 +300,43 @@ import logo from '../logo.jpg';
       
       <div class="grid grid-cols-4 mt-40">
         <div class="class-card">
-          <div class="class-img" style="background-color: #333;"></div>
+          <div class="class-img">
+            <img src={smartRumba.src} alt="Clase Smart Rumba" width={smartRumba.width} height={smartRumba.height} loading="lazy" />
+          </div>
           <div class="class-info">
             <h3>Smart Rumba</h3>
             <p>45 min &middot; Intensidad alta</p>
+            <p class="class-desc">Ritmo, cardio y coordinación con música en vivo en salón.</p>
           </div>
         </div>
         <div class="class-card">
-          <div class="class-img" style="background-color: #444;"></div>
+          <div class="class-img">
+            <img src={smartCombat.src} alt="Clase Smart Combat" width={smartCombat.width} height={smartCombat.height} loading="lazy" />
+          </div>
           <div class="class-info">
             <h3>Smart Combat</h3>
-            <p>45 min &middot; Intensidad alta</p>
+            <p>30-45 min &middot; Intensidad alta</p>
+            <p class="class-desc">Artes marciales y cardio para quemar grasa y liberar estrés.</p>
           </div>
         </div>
         <div class="class-card">
-          <div class="class-img" style="background-color: #555;"></div>
+          <div class="class-img">
+            <img src={smartCycling.src} alt="Clase Smart Cycling" width={smartCycling.width} height={smartCycling.height} loading="lazy" />
+          </div>
           <div class="class-info">
             <h3>Smart Cycling</h3>
             <p>45 min &middot; Intensidad alta</p>
+            <p class="class-desc">Bici estática al ritmo de la música para resistencia y quema.</p>
           </div>
         </div>
         <div class="class-card">
-          <div class="class-img" style="background-color: #666;"></div>
+          <div class="class-img">
+            <img src={smartFuncional.src} alt="Clase Smart Funcional" width={smartFuncional.width} height={smartFuncional.height} loading="lazy" />
+          </div>
           <div class="class-info">
             <h3>Smart Funcional</h3>
             <p>30-45 min &middot; Intensidad alta</p>
+            <p class="class-desc">Fuerza funcional y tonificación para todo el cuerpo.</p>
           </div>
         </div>
       </div>
@@ -289,6 +344,63 @@ import logo from '../logo.jpg';
       <div class="text-center mt-40">
         <a href="#" class="btn btn-primary">Ver todos los horarios</a>
       </div>
+    </div>
+  </section>
+
+  <!-- 8b. COMUNIDAD SMART (exclusivo landing) -->
+  <section id="comunidad" class="section community bg-primary">
+    <div class="container text-center">
+      <span class="section-badge section-badge-dark">Experiencia Smart Fit</span>
+      <h2 class="section-title">Comunidad que entrena contigo, dentro y fuera de la sede</h2>
+      <p class="section-subtitle community-subtitle">
+        Eventos al aire libre, retos entre sedes y sesiones especiales que no encontrarás en una landing genérica.
+      </p>
+      <div class="grid grid-cols-3 community-grid mt-40">
+        <article class="community-card">
+          <h3>Smart Weekend</h3>
+          <p>Entrenamientos al aire libre: cycling, yoga y funcional en parques y plazas de tu ciudad.</p>
+        </article>
+        <article class="community-card">
+          <h3>Fit Friend</h3>
+          <p>Trae un amigo con plan Black y compartan rutina. Más motivación, mejores resultados.</p>
+        </article>
+        <article class="community-card">
+          <h3>Radio Smart Fit</h3>
+          <p>Música y energía en sala para que cada serie se sienta como un evento, no una obligación.</p>
+        </article>
+      </div>
+      <a href="#sedes" class="btn btn-dark mt-40">Encuentra tu sede y únete</a>
+    </div>
+  </section>
+
+  <!-- 8c. PRIMER DÍA (exclusivo landing) -->
+  <section id="primer-dia" class="section first-day bg-white">
+    <div class="container">
+      <h2 class="section-title text-center">Tu primer día en Smart Fit, paso a paso</h2>
+      <p class="section-subtitle text-center">Guía rápida para quien nunca ha pisado un gimnasio o vuelve después de tiempo</p>
+      <ol class="steps-list mt-40">
+        <li class="step-item">
+          <span class="step-num">1</span>
+          <div>
+            <h3>Llega 15 minutos antes</h3>
+            <p>Activa tu membresía en recepción y conoce las zonas: cardio, peso libre y salón grupal.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">2</span>
+          <div>
+            <h3>Pide ayuda con Smart Help</h3>
+            <p>Los profesores con camiseta identificada te muestran máquinas y una rutina inicial en la app.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <span class="step-num">3</span>
+          <div>
+            <h3>Reserva tu primera clase</h3>
+            <p>Elige Rumba, Combat, Cycling o Funcional desde la app y cierra el día con energía.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -381,7 +493,16 @@ import logo from '../logo.jpg';
           <p class="text-sm mt-20 text-gray">Exclusivo para miembros Smart Fit</p>
         </div>
         <div class="app-image">
-          <div class="mockup"></div>
+          <div class="mockup">
+            <img
+              src={appImg.src}
+              alt="Captura de la Smart Fit App"
+              width={appImg.width}
+              height={appImg.height}
+              class="mockup-screen"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -583,10 +704,10 @@ import logo from '../logo.jpg';
   }
   .header-content {
     display: grid;
-    grid-template-columns: minmax(160px, auto) 1fr auto;
+    grid-template-columns: minmax(200px, auto) 1fr auto;
     align-items: center;
-    gap: 20px 32px;
-    min-height: 72px;
+    gap: 16px 24px;
+    min-height: 88px;
   }
   .logo {
     display: flex;
@@ -598,16 +719,15 @@ import logo from '../logo.jpg';
   .header .logo-header {
     justify-self: start;
     align-self: center;
-    height: 72px;
+    height: 88px;
   }
   .header .logo-header img {
-    height: 72px;
+    height: 88px;
     width: auto;
-    max-width: 200px;
+    max-width: 260px;
     display: block;
     object-fit: contain;
     object-position: left center;
-    /* El JPG tiene fondo negro: se integra con el header oscuro */
     mix-blend-mode: lighten;
   }
   .nav-desktop {
@@ -636,14 +756,16 @@ import logo from '../logo.jpg';
   .nav-desktop ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 22px;
   }
   .nav-desktop a {
     color: var(--color-white);
     text-decoration: none;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     transition: color 0.3s;
   }
   .nav-desktop a:hover {
@@ -853,14 +975,170 @@ import logo from '../logo.jpg';
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   }
   .class-img {
-    height: 200px;
+    height: 220px;
     width: 100%;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .class-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
   .class-info {
     padding: 20px;
   }
   .class-info h3 { margin-bottom: 5px; }
   .class-info p { color: #666; font-size: 0.9rem; }
+  .class-desc {
+    margin-top: 8px;
+    font-size: 0.85rem !important;
+    line-height: 1.4;
+  }
+
+  /* Reto 30 días */
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .section-badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--color-dark);
+    font-weight: 800;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .section-badge-dark {
+    background: var(--color-dark);
+    color: var(--color-primary);
+  }
+  .challenge-lead {
+    color: #ccc;
+    font-size: 1.05rem;
+    margin: 16px 0 24px;
+    max-width: 520px;
+  }
+  .challenge-list {
+    list-style: none;
+    color: #eee;
+  }
+  .challenge-list li {
+    padding: 10px 0 10px 28px;
+    position: relative;
+    font-weight: 500;
+  }
+  .challenge-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: var(--color-primary);
+    border-radius: 50%;
+  }
+  .challenge-stats {
+    display: grid;
+    gap: 16px;
+  }
+  .stat-card {
+    background: rgba(189, 202, 27, 0.08);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .stat-card strong {
+    display: block;
+    font-size: 3rem;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+  .stat-card span {
+    display: block;
+    margin-top: 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+  }
+
+  /* Comunidad */
+  .community-subtitle {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .community-grid {
+    text-align: left;
+  }
+  .community-card {
+    background: var(--color-dark);
+    color: var(--color-white);
+    padding: 28px;
+    border-radius: 8px;
+    height: 100%;
+  }
+  .community-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+  }
+  .community-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* Primer día */
+  .steps-list {
+    list-style: none;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .step-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 28px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .step-item:last-child {
+    border-bottom: none;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary);
+    color: var(--color-dark);
+    font-weight: 900;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .step-item h3 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+  .step-item p {
+    color: #555;
+    font-weight: 500;
+  }
+  #reto, #comunidad, #primer-dia {
+    scroll-margin-top: 100px;
+  }
 
   /* Comparison */
   .table-container {
@@ -932,20 +1210,35 @@ import logo from '../logo.jpg';
     align-items: center;
   }
   .mockup {
-    width: 260px;
-    height: 520px;
-    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-    border: 8px solid #BDCA1B;
-    border-radius: 40px;
-    box-shadow: 0 30px 80px rgba(255,209,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    width: 280px;
+    height: 560px;
+    background: #0d0d0d;
+    border: 10px solid #BDCA1B;
+    border-radius: 44px;
+    box-shadow: 0 30px 80px rgba(189, 202, 27, 0.2);
+    padding: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+  .mockup::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 6px;
+    background: #333;
+    border-radius: 3px;
+    z-index: 2;
+  }
+  .mockup-screen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 34px;
+    display: block;
   }
 
   /* FAQ */
@@ -1111,6 +1404,7 @@ import logo from '../logo.jpg';
   /* Utils */
   .text-center { text-align: center; }
   .text-left { text-align: left; }
+  .text-white { color: var(--color-white); }
   .mt-20 { margin-top: 20px; }
   .mt-30 { margin-top: 30px; }
   .mt-40 { margin-top: 40px; }
@@ -1123,12 +1417,13 @@ import logo from '../logo.jpg';
     .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .hero-title { font-size: 3rem; }
+    .challenge-grid { grid-template-columns: 1fr; }
     .app-grid { grid-template-columns: 1fr; gap: 40px; }
     .app-title { text-align: center; }
     .app-features li { justify-content: flex-start; }
     .app-buttons { justify-content: center; }
     .app-image { order: -1; }
-    .mockup { width: 200px; height: 400px; }
+    .mockup { width: 240px; height: 480px; }
   }
   @media (max-width: 768px) {
     .header-content {
@@ -1136,11 +1431,11 @@ import logo from '../logo.jpg';
       min-height: 64px;
     }
     .header .logo-header {
-      height: 60px;
+      height: 68px;
     }
     .header .logo-header img {
-      height: 60px;
-      max-width: 170px;
+      height: 68px;
+      max-width: 200px;
     }
     .nav-desktop { display: none; }
     .hero { padding: 60px 0; }
