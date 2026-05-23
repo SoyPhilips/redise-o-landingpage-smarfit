@@ -1,0 +1,231 @@
+---
+import { sedes } from '../data/sedes';
+---
+
+<div class="sedes-map-layout">
+  <div id="sedes-map" class="sedes-map" aria-label="Mapa de sedes Smart Fit en Colombia"></div>
+  <aside class="sedes-panel" aria-label="Listado de sedes">
+    <p class="sedes-panel-count" id="sedes-count">{sedes.length} sedes mostradas</p>
+    <ul id="sedes-list" class="sedes-list"></ul>
+  </aside>
+</div>
+
+<script define:vars={{ sedes }}>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+
+  const primaryColor = '#BDCA1B';
+  const mapEl = document.getElementById('sedes-map');
+  const listEl = document.getElementById('sedes-list');
+  const countEl = document.getElementById('sedes-count');
+  const searchInput = document.getElementById('sedes-search');
+  const searchBtn = document.getElementById('sedes-search-btn');
+
+  if (!mapEl || !listEl) throw new Error('Mapa de sedes: elementos no encontrados');
+
+  const markerIcon = L.divIcon({
+    className: 'sedes-marker',
+    html: '<span aria-hidden="true"></span>',
+    iconSize: [28, 28],
+    iconAnchor: [14, 28],
+    popupAnchor: [0, -28],
+  });
+
+  const map = L.map(mapEl, {
+    scrollWheelZoom: false,
+  }).setView([4.65, -74.1], 6);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  const markers = new Map();
+
+  function renderList(filtered) {
+    listEl.innerHTML = '';
+    filtered.forEach((sede) => {
+      const li = document.createElement('li');
+      li.className = 'sedes-list-item';
+      li.innerHTML = `
+        <strong>${sede.name}</strong>
+        <span>${sede.city}</span>
+        <p>${sede.address}</p>
+        ${sede.url ? `<a href="${sede.url}" target="_blank" rel="noopener noreferrer">Ver sede</a>` : ''}
+      `;
+      li.addEventListener('click', () => {
+        map.setView([sede.lat, sede.lng], 15, { animate: true });
+        markers.get(sede.id)?.openPopup();
+      });
+      listEl.appendChild(li);
+    });
+    if (countEl) {
+      countEl.textContent =
+        filtered.length === sedes.length
+          ? `${filtered.length} sedes en el mapa`
+          : `${filtered.length} de ${sedes.length} sedes`;
+    }
+  }
+
+  function setMarkers(filtered) {
+    markers.forEach((marker) => map.removeLayer(marker));
+    markers.clear();
+
+    filtered.forEach((sede) => {
+      const marker = L.marker([sede.lat, sede.lng], { icon: markerIcon })
+        .addTo(map)
+        .bindPopup(
+          `<strong>Smart Fit ${sede.name}</strong><br>${sede.address}<br>${sede.city}` +
+            (sede.url
+              ? `<br><a href="${sede.url}" target="_blank" rel="noopener">Más info</a>`
+              : ''),
+        );
+      markers.set(sede.id, marker);
+    });
+
+    if (filtered.length > 0) {
+      const bounds = L.latLngBounds(filtered.map((s) => [s.lat, s.lng]));
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12 });
+    }
+  }
+
+  function applyFilter(query) {
+    const q = query.trim().toLowerCase();
+    const filtered = q
+      ? sedes.filter(
+          (s) =>
+            s.name.toLowerCase().includes(q) ||
+            s.city.toLowerCase().includes(q) ||
+            s.address.toLowerCase().includes(q),
+        )
+      : [...sedes];
+    setMarkers(filtered);
+    renderList(filtered);
+  }
+
+  applyFilter('');
+
+  searchBtn?.addEventListener('click', () => {
+    applyFilter(searchInput?.value ?? '');
+  });
+
+  searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      applyFilter(searchInput.value);
+    }
+  });
+
+  searchInput?.addEventListener('input', () => {
+    if (!searchInput.value.trim()) applyFilter('');
+  });
+
+  mapEl.addEventListener('mouseenter', () => {
+    map.scrollWheelZoom.enable();
+  });
+  mapEl.addEventListener('mouseleave', () => {
+    map.scrollWheelZoom.disable();
+  });
+</script>
+
+<style>
+  .sedes-map-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: left;
+  }
+
+  @media (min-width: 992px) {
+    .sedes-map-layout {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: stretch;
+    }
+  }
+
+  .sedes-map {
+    width: 100%;
+    height: 420px;
+    border-radius: 8px;
+    z-index: 0;
+    border: 1px solid #ddd;
+  }
+
+  .sedes-panel {
+    background: var(--color-light);
+    border-radius: 8px;
+    padding: 16px;
+    max-height: 420px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sedes-panel-count {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--color-gray);
+  }
+
+  .sedes-list {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sedes-list-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .sedes-list-item:hover {
+    background: rgba(189, 202, 27, 0.12);
+  }
+
+  .sedes-list-item strong {
+    display: block;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+  }
+
+  .sedes-list-item span {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .sedes-list-item p {
+    margin: 6px 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .sedes-list-item a {
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-dark);
+  }
+
+  :global(.sedes-marker) {
+    background: transparent;
+    border: none;
+  }
+
+  :global(.sedes-marker span) {
+    display: block;
+    width: 28px;
+    height: 28px;
+    background: #bdca1b;
+    border: 3px solid #1a1a1a;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+</style>

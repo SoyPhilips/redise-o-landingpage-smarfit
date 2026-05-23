@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SedesMap from '../components/SedesMap.astro';
 import logo from '../logo.jpg';
 ---
 
@@ -15,8 +16,14 @@ import logo from '../logo.jpg';
   <!-- 2. HEADER -->
   <header class="header bg-dark">
     <div class="container header-content">
-      <a href="#" class="logo">
-        <img src={logo.src} alt="Smart Fit" width={logo.width} height={logo.height} />
+      <a href="#" class="logo" aria-label="Smart Fit - Inicio">
+        <img
+          src={logo.src}
+          alt="Smart Fit"
+          width="140"
+          height="48"
+          decoding="async"
+        />
       </a>
       <nav class="nav-desktop">
         <ul>
@@ -446,17 +453,27 @@ import logo from '../logo.jpg';
       <p class="section-subtitle">Con más de 120 sedes en Colombia, siempre hay una cerca de ti</p>
       
       <div class="search-bar mt-30">
-        <input type="text" placeholder="Buscar por ciudad o barrio..." class="search-input">
-        <button class="btn btn-dark">Buscar</button>
+        <input
+          type="search"
+          id="sedes-search"
+          placeholder="Buscar por ciudad o barrio..."
+          class="search-input"
+          autocomplete="off"
+        />
+        <button type="button" class="btn btn-dark" id="sedes-search-btn">Buscar</button>
       </div>
-      
-      <div class="map-placeholder mt-40">
-        <!-- Mapa interactivo iría aquí -->
-        <div class="map-visual">Mapa de Colombia con pines</div>
+
+      <div class="mt-40">
+        <SedesMap />
       </div>
-      
+
       <div class="mt-30">
-        <a href="#" class="text-primary" style="font-weight: 800; text-decoration: underline;">Ver todas las sedes</a>
+        <a
+          href="https://www.smartfit.com.co/gimnasios"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary sedes-external-link"
+        >Ver todas las sedes en smartfit.com.co</a>
       </div>
     </div>
   </section>
@@ -482,7 +499,7 @@ import logo from '../logo.jpg';
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="logo">
-            <img src={logo.src} alt="Smart Fit" width={logo.width} height={logo.height} />
+            <img src={logo.src} alt="Smart Fit" width="120" height="40" decoding="async" />
           </div>
           <p class="mt-20 text-gray">El gimnasio inteligente.</p>
         </div>
@@ -556,24 +573,37 @@ import logo from '../logo.jpg';
 
   /* Header */
   .header {
-    padding: 20px 0;
+    padding: 16px 0;
   }
   .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
+    min-height: 56px;
   }
   .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
     text-decoration: none;
-    line-height: 1;
+    line-height: 0;
+    width: 140px;
+    height: 48px;
   }
   .logo img {
-    height: 48px;
-    width: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left center;
     display: block;
   }
-  .footer-brand .logo img {
+  .footer-brand .logo {
+    width: 120px;
     height: 40px;
+  }
+  .footer-brand .logo img {
+    object-position: left center;
   }
   #beneficios {
     scroll-margin-top: 100px;
@@ -945,16 +975,12 @@ import logo from '../logo.jpg';
     border-radius: 4px;
     font-family: inherit;
   }
-  .map-placeholder {
-    width: 100%;
-    height: 400px;
-    background: #eee;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    font-weight: 700;
+  .sedes-external-link {
+    font-weight: 800;
+    text-decoration: underline;
+  }
+  #sedes {
+    scroll-margin-top: 100px;
   }
 
   /* Final CTA */
